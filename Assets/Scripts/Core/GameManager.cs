@@ -34,39 +34,6 @@ namespace Backpack.Core
             BackpackPanel.Instance.gameObject.SetActive(false);
         }
 
-        //void SpawnItems(int itemCount)
-        //{
-        //    GameObject background = GameObject.Find("Backpack/background");
-        //    RectTransform backgroundRect = background.GetComponent<RectTransform>();
-
-        //    float itemWidth = 50f; // set the width of each item slot
-        //    float itemHeight = 50f; // set the height of each item slot
-        //    float padding = 10f; // set the padding between each item slot
-
-        //    int itemsPerRow = Mathf.FloorToInt(backgroundRect.rect.width / (itemWidth + padding)); // calculate the number of items that can fit in one row
-
-        //    Vector2 startPosition = new Vector2(-(backgroundRect.rect.width / 2f) + (itemWidth / 2f), (backgroundRect.rect.height / 2f) - (itemHeight / 2f)); // calculate the starting position of the first item slot
-
-        //    for (int i = 0; i < itemCount; i++)
-        //    {
-        //        // random generate items
-        //        Item item = new Item("Item " + i, ItemClass.A, null, null, null);
-        //        int count = Random.Range(1, 99);
-
-        //        // instantiate the item slot prefab
-        //        GameObject itemSlotGO = Instantiate(m_ItemSlotPrefab, background.transform);
-
-        //        // set the position of the item slot
-        //        Vector2 position = new Vector2(startPosition.x + (i % itemsPerRow) * (itemWidth + padding), startPosition.y - (i / itemsPerRow) * (itemHeight + padding));
-        //        itemSlotGO.GetComponent<RectTransform>().anchoredPosition = position;
-
-        //        // set the item and count of the item slot
-        //        ItemSlot itemSlot = itemSlotGO.GetComponent<ItemSlot>();
-        //        itemSlot.m_Item = item;
-        //        itemSlot.m_Count = count;
-        //    }
-        //}
-
         void SpawnItemSlots(int itemCount)
         {
             Sprite[] sprites = Resources.LoadAll<Sprite>("Images");
@@ -81,7 +48,7 @@ namespace Backpack.Core
             {
                 // random generate item slot object
                 GameObject itemSlotGO = Instantiate(Resources.Load<GameObject>("Prefabs/ItemSlot"));
-                itemSlotGO.transform.SetParent(GameObject.Find("Backpack/Background/Items/ItemList").transform, false);
+                itemSlotGO.transform.SetParent(GameObject.Find("Backpack/Background/Items/ItemList/Viewport/Content").transform, false);
 
                 Vector2 position = new Vector2(PADDING + (i % slotsPerRow) * (ITEM_WIDTH + PADDING),
                                                - PADDING - (i / slotsPerRow) * (ITEM_HEIGHT + PADDING));
